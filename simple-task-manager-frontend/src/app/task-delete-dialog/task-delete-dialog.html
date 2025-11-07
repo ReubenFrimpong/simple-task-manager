@@ -1,0 +1,10 @@
+<div>
+  <h2 mat-dialog-title>Delete Task?</h2>
+  <mat-dialog-content>
+    <p>Are you sure you want to delete this task?</p>
+  </mat-dialog-content>
+  <mat-dialog-actions class="flex justify-end gap-2">
+    <button matButton mat-dialog-close>Cancel</button>
+    <button matButton="filled" (click)="confirmDelete()">Delete Task</button>
+  </mat-dialog-actions>
+</div>

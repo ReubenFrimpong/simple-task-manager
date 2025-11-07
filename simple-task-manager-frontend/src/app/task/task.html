@@ -1,0 +1,56 @@
+<div class="grid grid-cols-3 gap-4 p-14">
+
+  <div class="col-span-2 h-full">
+    <h2 class="text-2xl font-bold mb-4">Your Tasks</h2>
+    <div>
+      <mat-list>
+        @if(tasks.length === 0) {
+          <i>You have no tasks. Create one!</i>
+        } @else {
+          @for (task of tasks; track $index) {
+            <mat-card class="mt-3 p-3" appearance="outlined">
+              <mat-card-header>
+                <mat-card-title>{{ task.title }}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>{{ task.description }}</p>
+              </mat-card-content>
+              <mat-card-footer class="flex justify-end gap-2">
+                <button matButton (click)="openEditDialog(task)">Edit</button>
+                <button matButton (click)="openDeleteDialog(task.id)">Delete</button>
+              </mat-card-footer>
+            </mat-card>
+          }
+        }
+      </mat-list>
+    </div>
+  </div>
+  <div>
+    <mat-card class="self-center p-5" appearance="outlined">
+      <mat-card-header class="mb-6">
+        <mat-card-title>Create Task</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="w-full mb-3">
+          <mat-label>Title</mat-label>
+          <input [(ngModel)]="taskPayload.title" name="title" matInput >
+          @if (error.title !== '') {
+            <mat-hint>{{ error.title }}</mat-hint>
+          }
+        </mat-form-field>
+        <mat-form-field class="w-full mb-3">
+          <mat-label>Description</mat-label>
+          <textarea [(ngModel)]="taskPayload.description" name="description" matInput></textarea>
+          @if (error.description !== '') {
+            <mat-hint>{{ error.description }}</mat-hint>
+          }
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button matButton="filled" (click)="createTask()" class="w-50 mx-auto">Create Task</button>
+      </mat-card-actions>
+
+    </mat-card>
+
+  </div>
+</div>
