@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { TaskService } from '../services/task-service';
 import { Router } from '@angular/router';
 import { MatButton } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @Component({
@@ -28,7 +29,8 @@ import { MatButton } from '@angular/material/button';
     MatInputModule,
     MatCardModule,
     FormsModule,
-    MatButton
+    MatButton,
+    MatSelectModule
   ],
   templateUrl: './task-edit-dialog.html',
   styleUrl: './task-edit-dialog.scss'
@@ -38,8 +40,12 @@ export class TaskEditDialog {
   dialogRef = inject(MatDialogRef<TaskEditDialog>);
   task = inject(MAT_DIALOG_DATA);
   taskService = inject(TaskService);
-  error = { title: '', description: '' };
+  error = { title: '', description: '', status: '' };
   router = inject(Router);
+  taskStatuses = [
+    { value: 'PENDING', viewValue: 'Pending' },
+    { value: 'COMPLETED', viewValue: 'Completed' }
+  ];
 
 
   public closeDialog() {

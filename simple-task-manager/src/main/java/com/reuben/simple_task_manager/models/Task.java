@@ -1,8 +1,12 @@
 package com.reuben.simple_task_manager.models;
 
 
+import com.reuben.simple_task_manager.enums.TaskStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -24,8 +28,8 @@ public class Task extends BaseEntity {
 
   private String description;
 
-  @Column(nullable = false)
-  private String status;
+  @Enumerated(EnumType.STRING)
+  private TaskStatus status;
 
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)
